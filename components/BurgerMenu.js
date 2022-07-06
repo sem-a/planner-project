@@ -4,7 +4,10 @@ import { StyleSheet, View, SafeAreaView, Text, Button } from 'react-native';
 export default function BurgerMenu() {
   return (
     <SafeAreaView>
-      <Button title='Настройки'/>
+      <View>
+        <Button title='Настройки'/>
+        <Button title='Вход'/>
+      </View>
       <Text>Главный экран</Text>
       <Text>Все задачи</Text>
       <Text>Выполненные задачи</Text>
