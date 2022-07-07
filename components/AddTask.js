@@ -3,7 +3,34 @@ import { StyleSheet, View, SafeAreaView, Text, TextInput, Button } from 'react-n
 import { globalStyles } from '../styles/style';
 import { Formik } from 'formik';
 
-export default function AddTask({ addTask }) {
+let STORAGE_KEY = 'tasks';
+
+
+export default function AddTask(setTask) {
+
+  const addTask = (task) => {
+    setTask((list) => {
+        task.key = Math.random().toString();
+        return [
+            task, 
+            ...list
+        ]
+    });
+    //setOpenAddTask(false);
+  }
+
+  const onChangeText = value => setTask(value);
+
+  const onSubmitEditing = () => {
+  if (!input) return;
+
+    saveData(input);
+    setTask('');
+  };
+
+
+  
+
   return (
     <SafeAreaView>
       <Text>Здесь вы можете добавить задачу</Text>
@@ -20,19 +47,20 @@ export default function AddTask({ addTask }) {
                 multiline
                 value={props.values.nameTask}
                 placeholder='Введите задачу'
-                onChangeText={props.handleChange('nameTask')}
+                onChangeText={onChangeText}
+                onSubmitEditing={onSubmitEditing}
               />
               <TextInput
                 multiline
                 value={props.values.dateTask}
-                placeholder='Введите дату'
-                onChangeText={props.handleChange('dateTask')}
+                onChangeText={onChangeText}
+                onSubmitEditing={onSubmitEditing}
               />
               <TextInput
                 multiline
                 value={props.values.timeTask}
-                placeholder='Введите время'
-                onChangeText={props.handleChange('timeTask')}
+                onChangeText={onChangeText}
+                onSubmitEditing={onSubmitEditing}
               />
               <Button title='Добавить' onPress={props.handleSubmit} />
             </View>
