@@ -1,93 +1,84 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Text, Button, FlatList, TouchableOpacity, Modal, CheckBox } from 'react-native';
-import { globalStyles } from '../styles/style';
-import AddTask from './AddTask';
+import React, { useState } from 'react';
+import { StyleSheet, View, SafeAreaView, Text, Button, FlatList, TouchableOpacity, CheckBox } from 'react-native';
 import Header from './Header';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
+import { Ionicons, Entypo } from '@expo/vector-icons';
+import AddTask from './AddTask';
+import Modal from "react-native-modal";
 
 
 
 export default function Main() {
 
+    const [modalAddTask, setModalAddTask] = useState('false');
 
-    const [openAddTask, setOpenAddTask] = useState(false);
-
-    const [task, setTask] = useState('');
-
-
-
-
-    const saveData = async () => {
-        try {
-            await AsyncStorage.setItem(STORAGE_KEY, task)
-            console.log('Сохранение успешно')
-        } catch(e) {
-            console.log('Ошибка!')
-        }
-    };
-    
-    const readData = async () => {
-        try {
-            const value = await AsyncStorage.getItem(STORAGE_KEY);
-    
-            if (value !== null) {
-                setTask(value);
-            }
-        } catch (e) {
-            console.log('Ошибка чтения хранилища')
-        }
-    };
-    
-    useEffect(() => {
-        readData();
-    }, [])
 
     return (
-        <SafeAreaView style={globalStyles.mainContainer}>
-            <Header />
-            
-            <Modal visible={openAddTask}>
+        <View>
 
-                <View style={globalStyles.mainContainer}>
-                    <Button title="Закрыть"  onPress={ () => { setOpenAddTask(false) } }/>
-                    <AddTask addTask={setTask} />
+            <Modal isVisible={modalAddTask}
+                animationType='slide'
+                transparent={true}
+                backdropColor={'black'}
+                backdropOpacity= {0.72}
+                style={{width: '100%', 
+                    marginBottom: 0,
+                    marginLeft: 0,
+                }}
+            >
+                <View style={styles.addTaskStyles}>
+                    <View style={styles.modalAddTask}>
+                        <Entypo name="chevron-small-down" size={30} color="black" style={styles.closeButtonAddTask} 
+                            onPress={ () => setModalAddTask(false)}
+                        />
+                        <AddTask />
+                    </View>
                 </View>
 
             </Modal>
 
+            <Header />
 
-            <View style={globalStyles.mainTaskContainer}>
-                <Text style={globalStyles.mainTitle}>TODAY</Text>
+            <View style={styles.container}>
+
 
                 <View>
-
-                    <FlatList 
-                        data={task}
-                        renderItem={ ({item}) => (
-                            <TouchableOpacity>
-                                <View style={globalStyles.mainTask}>
-                                    <Text>{item.nameTask}</Text>
-                                    <Text>{item.dateTask}</Text>
-                                    <Text>{item.timeTask}</Text>
-                                </View>
-                            </TouchableOpacity>
-                        ) }
-
-                    />
 
                 </View>
 
 
+                <Ionicons name="add-circle" size={100} color="#5F92CF" style={styles.addCircle}
+                onPress={ () => { setModalAddTask(true) }} />
             </View>
-
-            <Button title='Добавить задачу' onPress={ () => { setOpenAddTask(true) } }/>
-
-        </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
+    container: {
+        width: '90%',
+        marginLeft: '5%',
+        height: '100%',
+    },
+    addCircle: {
+        position: 'absolute',
+        right: -15,
+        bottom: 350,
+    },
+    closeButtonAddTask: {
+        textAlign: 'center',
+        color: '#D9D9D9',
+    },
+    addTaskStyles: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        alignItems: 'center', 
+    },
+    modalAddTask: {
+        width: '100%',
+        height: 730,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        backgroundColor: 'white',
+    },
 });
-

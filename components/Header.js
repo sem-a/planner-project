@@ -1,52 +1,47 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Button, Modal } from 'react-native';
-import BurgerMenu from './BurgerMenu';
-import Calendar from './Calendar';
-import { globalStyles } from '../styles/style';
+import { StyleSheet, View, SafeAreaView, Button, Modal, Text } from 'react-native';
+import { Ionicons, AntDesign} from '@expo/vector-icons';
+ 
+
 
 export default function Header() {
 
-    const [burgerMenu, setBurgerMenu] = useState(false);
-    const [calendar, setCalendar] = useState(false);
+
     
   return (
-    <SafeAreaView>
-        <View style={styles.header}>
-            <Button title='Меню'  onPress={ () => { setBurgerMenu(true) } }/>
-            <Button title='Календарь' onPress={ () => { setCalendar(true) } }/>
+    <View>
+      <View style={styles.header}>
+        <View style={styles.container}>
+          <View style={styles.headerPanel}>
+            <Ionicons name="ios-menu-outline" size={36} color="white" />
+            <Text style={styles.headerText}>Today</Text>
+            <AntDesign name="calendar" size={30} color="white" />
+          </View>
         </View>
-
-
-
-        <Modal visible={burgerMenu}>
-
-            <View style={globalStyles.mainContainer} >
-                <Button title="Закрыть"  onPress={ () => { setBurgerMenu(false) } }/>
-                <BurgerMenu />
-            </View>
-
-        </Modal>
-
-
-        <Modal visible={calendar}>
-
-            <View style={globalStyles.mainContainer}>
-                <Button title="Закрыть" onPress={ () => { setCalendar(false) } }/>
-                <Calendar />
-            </View>
-
-        </Modal>
-
-
-
-
-    </SafeAreaView>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-    header: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
+  header: {
+    backgroundColor: '#5F92CF',
+  },
+  container: {
+    width: '90%',
+    marginLeft: '5%',
+  },
+  headerPanel: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingTop: 50,
+    paddingBottom: 10,
+    height: 100,
+  },
+  headerText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+  },
 });

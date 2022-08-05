@@ -1,13 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, SafeAreaView, Text, Button } from 'react-native';
 
-export default function BurgerMenu() {
+export default function Settings() {
   return (
     <SafeAreaView>
-      <Button title='Настройки'/>
-      <Text>Главный экран</Text>
-      <Text>Все задачи</Text>
-      <Text>Выполненные задачи</Text>
+      <Text>Я настройки</Text>
     </SafeAreaView>
   );
 }

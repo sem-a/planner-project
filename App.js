@@ -4,9 +4,9 @@ import Main from './components/Main';
 
 export default function App() {
   return (
-    <SafeAreaView>
+    <View>
       <Main />
-    </SafeAreaView>
+    </View>
   );
 }
 
