@@ -9,18 +9,20 @@ import Modal from "react-native-modal";
 
 export default function Main() {
 
-    const [modalAddTask, setModalAddTask] = useState('false');
+    const [modalAddTask, setModalAddTask] = useState(false);
 
 
     return (
         <View>
 
             <Modal isVisible={modalAddTask}
-                animationType='slide'
-                transparent={true}
-                backdropColor={'black'}
-                backdropOpacity= {0.72}
-                style={{width: '100%', 
+                animationIn='slideInUp'
+                animationOut='slideOutDown'
+                avoidKeyboard={true}
+                onBackdropPress={ () => { setModalAddTask(false) } }
+                onSwipeComplete={ () => { setModalAddTask(false) } }
+                swipeDirection='down'
+                style={{width: '100%',
                     marginBottom: 0,
                     marginLeft: 0,
                 }}
@@ -35,6 +37,11 @@ export default function Main() {
                 </View>
 
             </Modal>
+
+
+
+        
+
 
             <Header />
 
@@ -76,9 +83,10 @@ const styles = StyleSheet.create({
     },
     modalAddTask: {
         width: '100%',
-        height: 730,
+        height: '85%',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         backgroundColor: 'white',
     },
+    
 });

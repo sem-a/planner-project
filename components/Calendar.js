@@ -3,9 +3,10 @@ import { StyleSheet, View, SafeAreaView, Text } from 'react-native';
 
 export default function Calendar() {
   return (
-    <SafeAreaView>
-      
-    </SafeAreaView>
+    <View>
+
+      <Text>Это каледарь! Он в отпуске пока, будет позже!</Text>
+    </View>
   );
 }
 

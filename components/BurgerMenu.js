@@ -3,11 +3,26 @@ import { StyleSheet, View, SafeAreaView, Text, Button } from 'react-native';
 
 export default function BurgerMenu() {
   return (
-    <SafeAreaView>
+    <View style={styles.burgerMenu}>
+      <View style={styles.burgerMenuHeader}>
 
-    </SafeAreaView>
+      </View>
+      <View style={styles.burgerMenuItem}>
+
+        <Text>Главный экран</Text>
+      </View>
+      
+      <View style={styles.burgerMenuItem}>
+
+        <Text>Завершенные задачи</Text>
+      </View>
+    
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  burgerMenu: {
+  },
+
 });
