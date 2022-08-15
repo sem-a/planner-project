@@ -4,53 +4,41 @@ import { Ionicons, Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-
-let STORAGE_KEY = '@task_input';
-
 export default function AddTask() {
   
-  const [taskInput, setTaskInput] = useState('');
+  const [taskInputValue, setTaskInputValue] = useState('');
+  const [value, setValue] = useState('');
 
-  const saveData = async () => {
-    try {
-      await AsyncStorage.setItem(STORAGE_KEY, task)
-      console.log('Data successfully saved')
-    } catch(e) {
-      console.log('Failed to save the data to the storage')
+  const saveValue = () => {
+    if(taskInputValue) {
+      AsyncStorage.setItem('task_key', taskInputValue)
+      setTaskInputValue('');
+      alert('Сохранено');
+    } else {
+      alert('error');
     }
   };
-  const readData = async () => {
-    try {
-      const value = await AsyncStorage.getItem(STORAGE_KEY);
-      if (value !== null) {
-        setTaskInput(value);
-      }
-    } catch(e) {
-      console.log('Failed to fetch the input from storage');
-    }
-  };
-  const onChangeText = value => setTaskInput(value);
-  const onSubmitEditing = () => {
-    if (!taskInput) return;
 
-    saveData(taskInput);
-    setTaskInput('');
+  const getValue = () => {
+    AsyncStorage.getItem('task_key').then((value) => {
+      setTaskInputValue(value);
+    })
   };
-
   
   
   return (
     <View style={styles.container}>
       <TextInput style={styles.addTaskForm} placeholder='Введите задачу...' 
-        value={taskInput}
-        onChangeText={onChangeText}
-        onSubmitEditing={onSubmitEditing}
+        value={taskInputValue}
+        onChangeText={(data) => setTaskInputValue(data)}
       />
       <TextInput style={styles.addSubTaskForm} placeholder='Добавить подзадачу' />
-      <Text>{taskInput}</Text>
+      
+      <Text>{value}</Text>
+      
       <View style={styles.addTaskPanel}>
         <View>
-          <Feather name="calendar" size={30} color="#D9D9D9" />
+          <Feather name="calendar" size={30} color="#D9D9D9" onPress={getValue} />
         </View>
         <View>
           <Ionicons name="notifications-outline" size={30} color="#D9D9D9" />
@@ -59,7 +47,7 @@ export default function AddTask() {
           <Ionicons name="attach-outline" size={30} color="#D9D9D9" />
         </View>
         <View>
-          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" />
+          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveValue}/>
         </View>
       </View>
     </View>

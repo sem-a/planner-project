@@ -4,7 +4,7 @@ import Header from './Header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './AddTask';
 import Modal from "react-native-modal";
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Main() {
