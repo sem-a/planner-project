@@ -11,6 +11,7 @@ export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
 
+    
 
     return (
         <View>
@@ -49,7 +50,7 @@ export default function Main() {
 
 
                 <View>
-
+                    <Text></Text>
                 </View>
 
 

@@ -3,51 +3,65 @@ import { StyleSheet, View, SafeAreaView, Text, TextInput, Button } from 'react-n
 import { Ionicons, Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+let ID = 0;
 
 export default function AddTask() {
   
-  const [taskInputValue, setTaskInputValue] = useState('');
-  const [value, setValue] = useState('');
+  const [task, setTask] = useState('');
 
-  const saveValue = () => {
-    if(taskInputValue) {
-      AsyncStorage.setItem('task_key', taskInputValue)
-      setTaskInputValue('');
-      alert('Сохранено');
-    } else {
-      alert('error');
+  const saveTask = async () => {
+    try {
+      await AsyncStorage.setItem(`@store1:${ID}`, task);
+      console.log('Save!');
+      ID = ID + 1;
+      let keys = await AsyncStorage.getAllKeys();
+      console.log(keys);
+    } catch(e) {
+      console.log('Error');
     }
   };
 
-  const getValue = () => {
-    AsyncStorage.getItem('task_key').then((value) => {
-      setTaskInputValue(value);
-    })
+  const readTask = async () => {
+    try {
+      let taskItem = await AsyncStorage.getItem(`@store1:${ID}`);
+      console.log(taskItem)
+      setTask('');
+    } catch (e) {
+      console.log('ошибка чтения');
+    }
   };
-  
-  
+
+  const clearTask = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log('Clear done!');
+      ID = 0;
+    } catch (e) {
+      console.log('Clear error');
+    }
+  }
+
+
   return (
     <View style={styles.container}>
-      <TextInput style={styles.addTaskForm} placeholder='Введите задачу...' 
-        value={taskInputValue}
-        onChangeText={(data) => setTaskInputValue(data)}
+      <TextInput style={styles.addTaskForm} placeholder='Введите задачу...'
+        value={task}
+        onChangeText={setTask}
       />
-      <TextInput style={styles.addSubTaskForm} placeholder='Добавить подзадачу' />
-      
-      <Text>{value}</Text>
+      <TextInput style={styles.addSubTaskForm} placeholder='Дата' />
       
       <View style={styles.addTaskPanel}>
         <View>
-          <Feather name="calendar" size={30} color="#D9D9D9" onPress={getValue} />
+          <Feather name="calendar" size={30} color="#D9D9D9" onPress={readTask} />
         </View>
         <View>
-          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" />
+          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTask} />
         </View>
         <View>
           <Ionicons name="attach-outline" size={30} color="#D9D9D9" />
         </View>
         <View>
-          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveValue}/>
+          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveTask} />
         </View>
       </View>
     </View>
