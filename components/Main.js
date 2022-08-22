@@ -50,7 +50,9 @@ export default function Main() {
 
 
                 <View>
-                    <Text></Text>
+                    
+                    {/* Вывести нужно сюда */}
+
                 </View>
 
 

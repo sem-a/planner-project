@@ -9,11 +9,11 @@ export default function AddTask() {
   
   const [task, setTask] = useState('');
 
-  const saveTask = async () => {
+  const saveTask = async () => { // сохранение данных
     try {
       await AsyncStorage.setItem(`@store1:${ID}`, task);
       console.log('Save!');
-      ID = ID + 1;
+      ID =+ 1;
       let keys = await AsyncStorage.getAllKeys();
       console.log(keys);
     } catch(e) {
@@ -21,17 +21,17 @@ export default function AddTask() {
     }
   };
 
-  const readTask = async () => {
+  const readTask = async () => { // чтение данных
     try {
-      let taskItem = await AsyncStorage.getItem(`@store1:${ID}`);
+      let taskItem = await AsyncStorage.getItem(`@store1:0`);
       console.log(taskItem)
-      setTask('');
+      setTask(taskItem);
     } catch (e) {
       console.log('ошибка чтения');
     }
   };
 
-  const clearTask = async () => {
+  const clearTask = async () => { // очистка хранилища
     try {
       await AsyncStorage.clear();
       console.log('Clear done!');
@@ -42,6 +42,7 @@ export default function AddTask() {
   }
 
 
+
   return (
     <View style={styles.container}>
       <TextInput style={styles.addTaskForm} placeholder='Введите задачу...'
@@ -49,6 +50,8 @@ export default function AddTask() {
         onChangeText={setTask}
       />
       <TextInput style={styles.addSubTaskForm} placeholder='Дата' />
+
+      
       
       <View style={styles.addTaskPanel}>
         <View>
