@@ -29,7 +29,7 @@ export default function AddTask() {
   };
 
   const readTaskButton = () => {
-    console.log(readTaskStore('store1:0'))
+    console.log(readTaskStore('@store1:0'))
   };
   
   const clearTaskButton = () => {
