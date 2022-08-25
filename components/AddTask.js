@@ -11,6 +11,7 @@ export default function AddTask() {
 
   let task = {
     taskName: '',
+    isComplete: false,
   };
 
   let ID = 0;
@@ -22,15 +23,17 @@ export default function AddTask() {
 
 
   const saveTaskButton = () => {
-    task.taskName = 'молоко';
+    task.taskName = taskName;
     console.log(task.taskName);
     saveTaskStore(task, ID);
-    ID+=1;
+    setTaskName('');
+    ID = ID + 1;
   };
 
   const readTaskButton = async () => {
-    let result = await readTaskStore('@store1:0');
-    console.log('result: ', result);
+    let readResult = await readTaskStore('@store1:0');
+    console.log(readResult);
+    return readResult;
   };
   
   const clearTaskButton = () => {
