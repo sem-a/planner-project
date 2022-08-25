@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-export default function AddTask() {
+export default async function AddTask() {
 
   let task = {
     taskName: '',
@@ -29,7 +29,7 @@ export default function AddTask() {
   };
 
   const readTaskButton = () => {
-    console.log(readTaskStore('store1:0'))
+    console.log(await readTaskStore('store1:0'))
   };
 
   return (

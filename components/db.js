@@ -25,7 +25,7 @@ export async function readTaskStore(STORAGE_KEY) {
             console.log('Error read');
         }
     } catch(e) {
-        console.log('Error read!');
+        console.log('Фатальная ошибка! Все потеряно!');
     }  
 };
 
