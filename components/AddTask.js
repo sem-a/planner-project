@@ -28,9 +28,8 @@ export default function AddTask() {
     ID+=1;
   };
 
-  const readTaskButton = () => {
-    let getResult = async() => { await readTaskStore('@store1:0') };
-    let result = getResult;
+  const readTaskButton = async () => {
+    let result = await readTaskStore('@store1:0');
     console.log('result: ', result);
   };
   
