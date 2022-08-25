@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-export default function AddTask() {
+const AddTask = async() => {
 
   let task = {
     taskName: '',
@@ -22,14 +22,14 @@ export default function AddTask() {
 
 
   const saveTaskButton = () => {
-    task.taskName = taskName;
+    task.taskName = 'молоко';
     console.log(task.taskName);
     saveTaskStore(task, ID);
     ID+=1;
   };
 
   const readTaskButton = () => {
-    let result = readTaskStore('@store1:0');
+    let result = async() => { await readTaskStore('@store1:0') };
     console.log('result: ', result);
   };
   
@@ -64,6 +64,8 @@ export default function AddTask() {
     </View>
   );
 }
+
+export default AddTask;
 
 const styles = StyleSheet.create({
   container: {
