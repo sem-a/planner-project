@@ -17,12 +17,14 @@ export async function readTaskStore(STORAGE_KEY) {
     // чтение данных из хранилища
     try {
         const jsonTaskItem = await AsyncStorage.getItem(STORAGE_KEY);
+        console.log(STORAGE_KEY);
         if(jsonTaskItem != null) {
             jsonTask = JSON.parse(jsonTaskItem);
             console.log('Read done!');
             return jsonTask;
         } else {
             console.log('Error read');
+            return 18
         }
     } catch(e) {
         console.log('Фатальная ошибка! Все потеряно!');

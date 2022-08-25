@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-export default async function AddTask() {
+export default function AddTask() {
 
   let task = {
     taskName: '',
@@ -22,15 +22,20 @@ export default async function AddTask() {
 
 
   const saveTaskButton = () => {
-    task.taskName = taskName;
+    task.taskName = 'Молоко';
     console.log(task.taskName);
     saveTaskStore(task, ID);
     ID+=1;
   };
 
   const readTaskButton = () => {
-    console.log(await readTaskStore('store1:0'))
+    console.log(readTaskStore('store1:0'))
   };
+  
+  const clearTaskButton = () => {
+    clearTaskStorage();
+    ID = 0;
+  }
 
   return (
     <View style={styles.container}>
@@ -46,7 +51,7 @@ export default async function AddTask() {
           <Feather name="calendar" size={30} color="#D9D9D9" onPress={readTaskButton}/>
         </View>
         <View>
-          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTaskStorage}/>
+          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTaskButton}/>
         </View>
         <View>
           <Ionicons name="attach-outline" size={30} color="#D9D9D9" onPress={showAllKey} />
