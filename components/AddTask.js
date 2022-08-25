@@ -22,14 +22,15 @@ export default function AddTask() {
 
 
   const saveTaskButton = () => {
-    task.taskName = 'Молоко';
+    task.taskName = taskName;
     console.log(task.taskName);
     saveTaskStore(task, ID);
     ID+=1;
   };
 
   const readTaskButton = () => {
-    console.log(readTaskStore('@store1:0'))
+    let result = readTaskStore('@store1:0');
+    console.log('result: ', result);
   };
   
   const clearTaskButton = () => {
