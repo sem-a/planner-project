@@ -1,70 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, SafeAreaView, Text, TextInput, Button } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
-let ID = 0;
+import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db';
+
+
+
 
 export default function AddTask() {
-  
-  const [task, setTask] = useState('');
 
-  const saveTask = async () => { // сохранение данных
-    try {
-      await AsyncStorage.setItem(`@store1:${ID}`, task);
-      console.log('Save!');
-      ID =+ 1;
-      let keys = await AsyncStorage.getAllKeys();
-      console.log(keys);
-    } catch(e) {
-      console.log('Error');
-    }
+  let task = {
+    taskName: '',
   };
 
-  const readTask = async () => { // чтение данных
-    try {
-      let taskItem = await AsyncStorage.getItem(`@store1:0`);
-      console.log(taskItem)
-      setTask(taskItem);
-    } catch (e) {
-      console.log('ошибка чтения');
-    }
+  let ID = 0;
+
+
+
+  const [taskName, setTaskName] = useState('');
+
+
+
+  const saveTaskButton = () => {
+    task.taskName = taskName;
+    console.log(task.taskName);
+    saveTaskStore(task, ID);
+    ID+=1;
   };
 
-  const clearTask = async () => { // очистка хранилища
-    try {
-      await AsyncStorage.clear();
-      console.log('Clear done!');
-      ID = 0;
-    } catch (e) {
-      console.log('Clear error');
-    }
-  }
-
-
+  const readTaskButton = () => {
+    console.log(readTaskStore('store1:0'))
+  };
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.addTaskForm} placeholder='Введите задачу...'
-        value={task}
-        onChangeText={setTask}
+      <TextInput style={styles.addTaskForm} placeholder='Введите задачу...' 
+        value={taskName}
+        onChangeText={setTaskName}
       />
-      <TextInput style={styles.addSubTaskForm} placeholder='Дата' />
 
       
       
       <View style={styles.addTaskPanel}>
         <View>
-          <Feather name="calendar" size={30} color="#D9D9D9" onPress={readTask} />
+          <Feather name="calendar" size={30} color="#D9D9D9" onPress={readTaskButton}/>
         </View>
         <View>
-          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTask} />
+          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTaskStorage}/>
         </View>
         <View>
-          <Ionicons name="attach-outline" size={30} color="#D9D9D9" />
+          <Ionicons name="attach-outline" size={30} color="#D9D9D9" onPress={showAllKey} />
         </View>
         <View>
-          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveTask} />
+          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveTaskButton} />
         </View>
       </View>
     </View>

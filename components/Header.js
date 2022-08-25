@@ -25,7 +25,7 @@ export default function Header() {
         animationOut='slideOutLeft'
         onBackdropPress={ () => { setModalBurgerMenu(false) } }
         onSwipeComplete={ () => { setModalBurgerMenu(false) } }
-        swipeDirection='down'
+        swipeDirection='left'
         style={{
           backgroundColor: 'white',
           width: '77%',

@@ -11,8 +11,9 @@ export default function BurgerMenu() {
 
   return (
     <View>
+
       <Modal isVisible={modalSettings}>
-        <Settings></Settings>
+
       </Modal>
       
       <View style={styles.burgerMenu}>
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
   },
   burgerMenuContainer: {
-    paddingTop: 100,
+    marginTop: 100,
   }, 
   burgerMenuText: {
     fontSize: 16,
