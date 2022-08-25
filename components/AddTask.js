@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-const AddTask = async() => {
+export default function AddTask() {
 
   let task = {
     taskName: '',
@@ -29,7 +29,8 @@ const AddTask = async() => {
   };
 
   const readTaskButton = () => {
-    let result = async() => { await readTaskStore('@store1:0') };
+    let getResult = async() => { await readTaskStore('@store1:0') };
+    let result = getResult;
     console.log('result: ', result);
   };
   
@@ -64,8 +65,6 @@ const AddTask = async() => {
     </View>
   );
 }
-
-export default AddTask;
 
 const styles = StyleSheet.create({
   container: {
