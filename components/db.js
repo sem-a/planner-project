@@ -8,6 +8,8 @@ export async function saveTaskStore(task, ID) {
         const jsonTaskItem = JSON.stringify(task);
         await AsyncStorage.setItem(`@store1:${ID}`, jsonTaskItem);
         console.log('Save done!');
+        console.log('ID:', ID);
+        ID += 1;
     } catch(e) {
         console.log('Error save!');
     }    

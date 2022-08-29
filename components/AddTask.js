@@ -27,7 +27,6 @@ export default function AddTask() {
     console.log(task.taskName);
     saveTaskStore(task, ID);
     setTaskName('');
-    ID = ID + 1;
   };
 
   const readTaskButton = async () => {
