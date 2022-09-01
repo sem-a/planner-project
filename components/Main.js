@@ -6,25 +6,22 @@ import AddTask from './AddTask';
 import Modal from "react-native-modal";
 
 import { readTaskStore, showAllKey } from './db';
-import { isInputEvent } from 'formik';
-
 
 export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
 
 
-
-    let toDoList = [{name: 'Картошка'}, {name: 'Молоко'}];
-
-    const setDoList = () => {
-        keys = showAllKey();
+    let toDoList = [];
+    const setToDoList = async () => {
+        let keys = showAllKey();
+        console.log(keys);
         for (let i = 0; i < keys.length; i++) {
-            toDoList[i] = readTaskStore(i);
+            toDoList[i] = await readTaskStore(i);
+            console.log(toDoList[i]);
         }
         return toDoList;
-    }
-    
+    };
 
     
 
@@ -67,8 +64,9 @@ export default function Main() {
                 <View>
                     
                     {/* Вывести нужно сюда */}
+                    <Button title='Нажми меня' onPress={setToDoList}/>
                     <FlatList data={toDoList} renderItem={ ({item}) => (
-                        <Text>{item.name}</Text>
+                        <Text>{item.taskName}</Text>
                     )} />
 
 

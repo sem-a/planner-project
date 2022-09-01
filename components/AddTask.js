@@ -14,16 +14,30 @@ export default function AddTask() {
     isComplete: false,
   };
 
+  let ID = 0;
+
 
 
   const [taskName, setTaskName] = useState('');
 
+
+
   const saveTaskButton = () => {
     task.taskName = taskName;
-    saveTaskStore(task);
+    console.log(task.taskName);
+    saveTaskStore(task, ID);
     setTaskName('');
   };
 
+  const readTaskButton = async () => {
+    let readResult = await readTaskStore('@store1:0');
+<<<<<<< HEAD
+=======
+    console.log(readResult);
+>>>>>>> parent of 87e90e9 (ID done)
+    return readResult;
+  };
+  
   const clearTaskButton = () => {
     clearTaskStorage();
   }
