@@ -5,7 +5,9 @@ import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './AddTask';
 import Modal from "react-native-modal";
 
+
 import { readTaskStore, showAllKey } from './db';
+
 
 export default function Main() {
 
@@ -14,15 +16,14 @@ export default function Main() {
 
     let toDoList = [];
     const setToDoList = async () => {
-        let keys = showAllKey();
+        let keys = await showAllKey();
         console.log(keys);
         for (let i = 0; i < keys.length; i++) {
-            toDoList[i] = await readTaskStore(i);
+            toDoList[i] = await readTaskStore('@store1:0');
             console.log(toDoList[i]);
         }
         return toDoList;
     };
-
     
 
     return (
@@ -68,6 +69,7 @@ export default function Main() {
                     <FlatList data={toDoList} renderItem={ ({item}) => (
                         <Text>{item.taskName}</Text>
                     )} />
+                    <Text>{toDoList.taskName}</Text>
 
 
                 </View>

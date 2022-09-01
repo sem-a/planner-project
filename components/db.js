@@ -1,8 +1,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+let ID = 0;
 
-
-export async function saveTaskStore(task, ID) {
+export async function saveTaskStore(task) {
     // сохранение данных в хранилище
     try {
         const jsonTaskItem = JSON.stringify(task);
@@ -15,11 +15,11 @@ export async function saveTaskStore(task, ID) {
     }    
 };
 
-export async function readTaskStore(ID) {
+export async function readTaskStore(STORAGE_KEY) {
     // чтение данных из хранилища
     try {
 
-        const jsonTaskItem = await AsyncStorage.getItem(`@store1:${ID}`);
+        const jsonTaskItem = await AsyncStorage.getItem(STORAGE_KEY);
         if(jsonTaskItem != null) {
             jsonTask = JSON.parse(jsonTaskItem);
             console.log('Read done!');
@@ -59,6 +59,7 @@ export async function clearTaskStorage() {
     // очистить хранилище полностью
     try {
         await AsyncStorage.clear();
+        ID = 0;
         console.log('Clear done!');
     } catch(e) {
         console.log('Erorr clear');

@@ -14,9 +14,6 @@ export default function AddTask() {
     isComplete: false,
   };
 
-  let ID = 0;
-
-
 
   const [taskName, setTaskName] = useState('');
 
@@ -25,7 +22,7 @@ export default function AddTask() {
   const saveTaskButton = () => {
     task.taskName = taskName;
     console.log(task.taskName);
-    saveTaskStore(task, ID);
+    saveTaskStore(task);
     setTaskName('');
   };
 
