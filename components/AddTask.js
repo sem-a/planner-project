@@ -31,10 +31,7 @@ export default function AddTask() {
 
   const readTaskButton = async () => {
     let readResult = await readTaskStore('@store1:0');
-<<<<<<< HEAD
-=======
     console.log(readResult);
->>>>>>> parent of 87e90e9 (ID done)
     return readResult;
   };
   
