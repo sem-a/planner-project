@@ -27,7 +27,7 @@ export default function AddTask() {
   };
 
   const readTaskButton = async () => {
-    let readResult = await readTaskStore('@store1:0');
+    let readResult = await readTaskStore(0);
     console.log(readResult);
     return readResult;
   };

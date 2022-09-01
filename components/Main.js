@@ -19,7 +19,7 @@ export default function Main() {
         let keys = await showAllKey();
         console.log(keys);
         for (let i = 0; i < keys.length; i++) {
-            toDoList[i] = await readTaskStore('@store1:0');
+            toDoList[i] = await readTaskStore(i);
             console.log(toDoList[i]);
         }
         return toDoList;

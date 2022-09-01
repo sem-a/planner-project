@@ -15,11 +15,11 @@ export async function saveTaskStore(task) {
     }    
 };
 
-export async function readTaskStore(STORAGE_KEY) {
+export async function readTaskStore(ID) {
     // чтение данных из хранилища
     try {
 
-        const jsonTaskItem = await AsyncStorage.getItem(STORAGE_KEY);
+        const jsonTaskItem = await AsyncStorage.getItem(`@store1:${ID}`);
         if(jsonTaskItem != null) {
             jsonTask = JSON.parse(jsonTaskItem);
             console.log('Read done!');
