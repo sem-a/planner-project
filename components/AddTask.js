@@ -24,14 +24,8 @@ export default function AddTask() {
     setTaskName('');
   };
 
-  const readTaskButton = async () => {
-    let readResult = await readTaskStore('@store1:1');
-    return readResult;
-  };
-  
   const clearTaskButton = () => {
     clearTaskStorage();
-    ID = 0;
   }
 
   return (

@@ -4,12 +4,27 @@ import Header from './Header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './AddTask';
 import Modal from "react-native-modal";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { readTaskStore, showAllKey } from './db';
+import { isInputEvent } from 'formik';
 
 
 export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
+
+
+
+    let toDoList = [{name: 'Картошка'}, {name: 'Молоко'}];
+
+    const setDoList = () => {
+        keys = showAllKey();
+        for (let i = 0; i < keys.length; i++) {
+            toDoList[i] = readTaskStore(i);
+        }
+        return toDoList;
+    }
+    
 
     
 
@@ -52,6 +67,10 @@ export default function Main() {
                 <View>
                     
                     {/* Вывести нужно сюда */}
+                    <FlatList data={toDoList} renderItem={ ({item}) => (
+                        <Text>{item.name}</Text>
+                    )} />
+
 
                 </View>
 
