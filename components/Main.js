@@ -14,16 +14,19 @@ export default function Main() {
     const [modalAddTask, setModalAddTask] = useState(false);
 
 
-    let toDoList = [];
+
+
+    let toDoListStorage = [];
     const setToDoList = async () => {
         let keys = await showAllKey();
-        console.log(keys);
+        let toDoList = [];
         for (let i = 0; i < keys.length; i++) {
             toDoList[i] = await readTaskStore(i);
-            console.log(toDoList[i]);
         }
-        return toDoList;
+        return toDoList; 
     };
+
+    toDoListStorage = setToDoList();
     
 
     return (
@@ -64,13 +67,9 @@ export default function Main() {
 
                 <View>
                     
-                    {/* Вывести нужно сюда */}
-                    <Button title='Нажми меня' onPress={setToDoList}/>
-                    <FlatList data={toDoList} renderItem={ ({item}) => (
-                        <Text>{item.taskName}</Text>
-                    )} />
-                    <Text>{toDoList.taskName}</Text>
+                    { /* Вывести нужно сюда */ }
 
+                    
 
                 </View>
 
