@@ -1,30 +1,33 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, SafeAreaView, Text, Button, FlatList, TouchableOpacity, CheckBox } from 'react-native';
 import Header from './Header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './AddTask';
 import Modal from "react-native-modal";
-
-
 import { readTaskStore, showAllKey } from './db';
+
 
 
 export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
 
-
-
+    let toDoList = [];
 
     const setToDoList = async () => {
-        let keys = await showAllKey();
-        let toDoList = [];
+        let keys = showAllKey();
+        let toDoListTemp = [];
         for (let i = 0; i < keys.length; i++) {
-            toDoList[i] = await readTaskStore(i);
-        }
-        return toDoList; 
+            toDoListTemp[i] = readTaskStore(i);
+        };
+        return toDoListTemp;
     };
-    
+
+    useEffect( () => {
+        console.log('он включен')
+        setToDoList();
+    }, [toDoList]);
+
 
     return (
         <View>
@@ -65,11 +68,10 @@ export default function Main() {
                 <View>
                     
                     { /* Вывести нужно сюда */ }
+                    <FlatList data={toDoList} renderItem={ (item) => (
+                        <Text>{item.taskName}</Text>
+                    )} />
 
-                    <Button title='Показать массив' onPress={async () => {
-                        let storageRead = await setToDoList();
-                        console.log(storageRead);
-                    }} />
 
                 </View>
 
