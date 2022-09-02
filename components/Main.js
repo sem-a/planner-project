@@ -16,7 +16,6 @@ export default function Main() {
 
 
 
-    let toDoListStorage = [];
     const setToDoList = async () => {
         let keys = await showAllKey();
         let toDoList = [];
@@ -25,8 +24,6 @@ export default function Main() {
         }
         return toDoList; 
     };
-
-    toDoListStorage = setToDoList();
     
 
     return (
@@ -69,11 +66,10 @@ export default function Main() {
                     
                     { /* Вывести нужно сюда */ }
 
-                    <FlatList data={toDoListStorage} renderItem={ (item) => (
-                        <Text>{item.taskName}</Text>
-                    )} />
-
-                    <Button title='Показать массив' onPress={ async () => { await console.log(toDoListStorage) } } />
+                    <Button title='Показать массив' onPress={async () => {
+                        let storageRead = await setToDoList();
+                        console.log(storageRead);
+                    }} />
 
                 </View>
 
