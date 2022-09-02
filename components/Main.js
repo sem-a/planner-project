@@ -69,7 +69,11 @@ export default function Main() {
                     
                     { /* Вывести нужно сюда */ }
 
-                    
+                    <FlatList data={toDoListStorage} renderItem={ (item) => (
+                        <Text>{item.taskName}</Text>
+                    )} />
+
+                    <Button title='Показать массив' onPress={ async () => { await console.log(toDoListStorage) } } />
 
                 </View>
 
