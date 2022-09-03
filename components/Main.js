@@ -12,21 +12,24 @@ export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
 
+    const [toDoList, setToDoList] = useState([
+        {taskName: 'Мясо'},
+    ]);
 
-    const [toDoList, setToDoList] = useState([]);
-
-    const readToDoList = async () => {
+    const readToDoList = async() => {
         let keys = await showAllKey();
+        let toDoTemp = [];
         for (let i = 0; i < keys.length; i++) {
-            let toDoListTemp = await readTaskStore(i);
-            toDoList[i] = useState(toDoListTemp);
+            toDoTemp[i] = await readTaskStore(i);
         }
-        return toDoList;
+        return toDoTemp; 
     };
 
     useEffect(() => {
-        readToDoList();
+        let temp = readToDoList();
+        console.log(temp);
     }, [toDoList]);
+
 
     return (
         <View>
@@ -67,9 +70,9 @@ export default function Main() {
                 <View>
                     
                     { /* Вывести нужно сюда */ }
-                    <FlatList data={toDoList} renderItem={ (item) => (
+                    <FlatList data={toDoList} renderItem={({item}) => (
                         <Text>{item.taskName}</Text>
-                    )} />
+                    )} />    
 
 
                 </View>
