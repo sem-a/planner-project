@@ -12,22 +12,21 @@ export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
 
-    let toDoList = [];
 
-    const setToDoList = async () => {
-        let keys = showAllKey();
-        let toDoListTemp = [];
+    const [toDoList, setToDoList] = useState([]);
+
+    const readToDoList = async () => {
+        let keys = await showAllKey();
         for (let i = 0; i < keys.length; i++) {
-            toDoListTemp[i] = readTaskStore(i);
-        };
-        return toDoListTemp;
+            let toDoListTemp = await readTaskStore(i);
+            toDoList[i] = useState(toDoListTemp);
+        }
+        return toDoList;
     };
 
-    useEffect( () => {
-        console.log('он включен')
-        setToDoList();
+    useEffect(() => {
+        readToDoList();
     }, [toDoList]);
-
 
     return (
         <View>
