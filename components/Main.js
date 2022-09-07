@@ -15,7 +15,7 @@ export default function Main() {
     const [toDoList, setToDoList] = useState([]);
 
     useEffect( () => {
-        
+
         const readDataStorege = async() => {
             let resultUseEffect = [];
             let keys = await showAllKey();
@@ -26,7 +26,7 @@ export default function Main() {
         };
         readDataStorege();
         
-        console.log('Хук работает');
+        console.log(`Хук работает`);
     });
 
     // const readToDoList = async() => {
@@ -78,6 +78,9 @@ export default function Main() {
                 <View>
                     
                     { /* Вывести нужно сюда */ }
+                    <FlatList data={toDoList} renderItem={ ( {item} ) => (
+                        <Text>{item.taskName}</Text>
+                    )} />
 
 
                 </View>
