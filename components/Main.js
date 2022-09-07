@@ -14,8 +14,9 @@ export default function Main() {
 
     const [toDoList, setToDoList] = useState([]);
 
-    useEffect( () => {
+    const stopUseEffect = 'STOOOOP!';
 
+    useEffect( () => {
         const readDataStorege = async() => {
             let resultUseEffect = [];
             let keys = await showAllKey();
@@ -25,9 +26,9 @@ export default function Main() {
             setToDoList(resultUseEffect);
         };
         readDataStorege();
-        
         console.log(`Хук работает`);
-    });
+        console.log(stopUseEffect);
+    }, [stopUseEffect]);
 
     // const readToDoList = async() => {
     //     let keys = await showAllKey();
