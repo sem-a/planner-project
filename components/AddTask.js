@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-export default function AddTask() {
+export default function AddTask(props) {
 
   let task = {
     taskName: '',
@@ -16,8 +16,6 @@ export default function AddTask() {
 
 
   const [taskName, setTaskName] = useState('');
-
-
 
   const saveTaskButton = () => {
     task.taskName = taskName;

@@ -11,10 +11,9 @@ import { readTaskStore, showAllKey } from './db';
 export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
-
     const [toDoList, setToDoList] = useState([]);
 
-    const stopUseEffect = 'STOOOOP!';
+    let counterUseEffect = 0;
 
     useEffect( () => {
         const readDataStorege = async() => {
@@ -27,8 +26,8 @@ export default function Main() {
         };
         readDataStorege();
         console.log(`Хук работает`);
-        console.log(stopUseEffect);
-    }, [stopUseEffect]);
+        console.log(counterUseEffect);
+    }, [counterUseEffect]);
 
     // const readToDoList = async() => {
     //     let keys = await showAllKey();
