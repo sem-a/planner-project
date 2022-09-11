@@ -13,8 +13,6 @@ export default function Main() {
     const [modalAddTask, setModalAddTask] = useState(false);
     const [toDoList, setToDoList] = useState([]);
 
-    let counterUseEffect = 0;
-
     useEffect( () => {
         const readDataStorege = async() => {
             let resultUseEffect = [];
@@ -26,18 +24,7 @@ export default function Main() {
         };
         readDataStorege();
         console.log(`Хук работает`);
-        console.log(counterUseEffect);
-    }, [counterUseEffect]);
-
-    // const readToDoList = async() => {
-    //     let keys = await showAllKey();
-    //     let toDoTemp = [];
-    //     for (let i = 0; i < keys.length; i++) {
-    //         toDoTemp[i] = await readTaskStore(i);
-    //     }
-    //     return toDoTemp; 
-    // };
-
+    }, []);
 
     return (
         <View>
@@ -59,7 +46,7 @@ export default function Main() {
                         <Entypo name="chevron-small-down" size={30} color="black" style={styles.closeButtonAddTask} 
                             onPress={ () => setModalAddTask(false)}
                         />
-                        <AddTask />
+                        <AddTask toDoList={toDoList} />
                     </View>
                 </View>
 

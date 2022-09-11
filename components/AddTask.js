@@ -17,6 +17,7 @@ export default function AddTask(props) {
 
   const [taskName, setTaskName] = useState('');
 
+
   const saveTaskButton = () => {
     task.taskName = taskName;
     console.log(task.taskName);
@@ -40,8 +41,6 @@ export default function AddTask(props) {
         value={taskName}
         onChangeText={setTaskName}
       />
-
-      
       
       <View style={styles.addTaskPanel}>
         <View>
