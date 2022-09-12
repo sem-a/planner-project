@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-export default function AddTask(props) {
+export default function AddTask() {
 
   let task = {
     taskName: '',

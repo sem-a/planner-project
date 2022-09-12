@@ -46,7 +46,7 @@ export default function Main() {
                         <Entypo name="chevron-small-down" size={30} color="black" style={styles.closeButtonAddTask} 
                             onPress={ () => setModalAddTask(false)}
                         />
-                        <AddTask toDoList={toDoList} />
+                        <AddTask />
                     </View>
                 </View>
 

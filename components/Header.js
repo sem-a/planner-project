@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView, Button, Text } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
-import BurgerMenu from './BurgerMenu';
-import Calendar from './Calendar'
+import { Ionicons ,Feather } from '@expo/vector-icons';
+import Calendar from './CompleteTask'
 import Modal from 'react-native-modal';
+import Settings from './Settings';
 
 
 export default function Header() {
 
-  const [modalBurgerMenu, setModalBurgerMenu] = useState(false);
+  const [modalSettings, setModalSettings] = useState(false);
   const [modalCompleteTask, setModalCompleteTask] = useState(false);
 
     
@@ -20,31 +20,28 @@ export default function Header() {
     <View>
 
 
-      <Modal isVisible={modalBurgerMenu}
-        animationIn='slideInLeft'
-        animationOut='slideOutLeft'
-        onBackdropPress={ () => { setModalBurgerMenu(false) } }
-        onSwipeComplete={ () => { setModalBurgerMenu(false) } }
-        swipeDirection='left'
-        style={{
-          backgroundColor: 'white',
-          width: '77%',
-          height: '100%',
-          marginTop: 0,
-          marginBottom: 0,
-          marginLeft: 0,
-        }}
+      <Modal isVisible={modalSettings}
+        animationIn='slideInRight'
+        animationOut='slideOutRight'
+        style={styles.modalHeader}
       >
+        <View style={styles.modalFlex}>
+          <Ionicons name="chevron-back" size={30} color="#5F92CF" onPress={ () => { setModalSettings(false) } } />
+          <Settings />
+        </View>
       </Modal>
 
 
 
       <Modal isVisible={modalCompleteTask}
-        animationIn='slideInDown'
-        animationOut='slideOutUp'
+        animationIn='slideInRight'
+        animationOut='slideOutRight'
+        style={styles.modalHeader}
       >
-        <Text style={{fontSize: 50}} onPress={ () => { setModalCompleteTask(false) } }>X</Text>
-        <Calendar />
+        <View style={styles.modalFlex}>
+          <Ionicons name="chevron-back" size={30} color="#5F92CF" onPress={ () => { setModalCompleteTask(false) } }/>
+          <Calendar />
+        </View>
       </Modal>
 
 
@@ -52,9 +49,7 @@ export default function Header() {
       <View style={styles.header}>
         <View style={styles.container}>
           <View style={styles.headerPanel}>
-            <Ionicons name="ios-menu-outline" size={36} color="white" 
-              onPress={ () => { setModalBurgerMenu(true) } }
-            />
+          <Feather name="settings" size={30} color="white" onPress={ () => { setModalSettings(true) } } />
             <Text style={styles.headerText}>Today</Text>
             <Feather name="check-circle" size={28} color="white" onPress={ () => {setModalCompleteTask(true)}}/>
           </View>
@@ -90,4 +85,23 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+
+
+
+  modalHeader: {
+    backgroundColor: 'white',
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    marginTop: 0,
+    marginLeft: 0,
+  },
+  modalFlex: {
+    flex: 1,
+    flexDirection: 'column',
+    width: '90%',
+    marginLeft: '5%',
+    marginTop: 50,
+  },
+
 });
