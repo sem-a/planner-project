@@ -14,14 +14,14 @@ export default function AddTask( {addHandler} ) {
     isComplete: false,
   };
   const [taskName, setTaskName] = useState('');
-  const [taskNew, setTaskNew] = useState('');
+  const [taskNew, setTaskNew] = useState();
 
   const saveTaskButton = () => {
     task.taskName = taskName;
-    console.log(task.taskName);
     saveTaskStore(task);
-    setTaskNew(task);
     setTaskName('');
+    // здесь task не пустой
+    return task;
   };
 
   const readTaskButton = async () => {
@@ -56,7 +56,10 @@ export default function AddTask( {addHandler} ) {
         </View>
         <View>
           <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={ () => {
-              saveTaskButton();
+              let taskNewTemp = saveTaskButton(); 
+              setTaskNew(taskNewTemp);
+              console.log(taskNew);
+
               if(taskNew == '') {
                 console.log('Пустой объект');
               } else {
