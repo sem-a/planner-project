@@ -24,15 +24,19 @@ export default function Main() {
 
 
     useEffect( () => {
-        const readDataStorege = async() => {
+        const readDataStorage = async() => {
             let resultUseEffect = [];
             let keys = await showAllKey();
-            for (let index = 0; index < keys.length; index++) {
-                resultUseEffect[index] = await readTaskStore(index);
-            };
-            setToDoList(resultUseEffect);
+            if (keys != undefined) {
+                for (let index = 0; index < keys.length; index++) {
+                    resultUseEffect[index] = await readTaskStore(index);
+                };
+                setToDoList(resultUseEffect);
+            } else {
+                console.log('Хранилище пустое')
+            }
         };
-        readDataStorege();
+        readDataStorage();
         console.log(`Хук работает`);
     }, []);
 

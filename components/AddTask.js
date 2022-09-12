@@ -13,10 +13,7 @@ export default function AddTask( {addHandler} ) {
     taskName: '',
     isComplete: false,
   };
-
-
   const [taskName, setTaskName] = useState('');
-
   const [taskNew, setTaskNew] = useState('');
 
   const saveTaskButton = () => {
@@ -52,7 +49,10 @@ export default function AddTask( {addHandler} ) {
           <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTaskButton}/>
         </View>
         <View>
-          <Ionicons name="attach-outline" size={30} color="#D9D9D9" onPress={showAllKey} />
+          <Ionicons name="attach-outline" size={30} color="#D9D9D9" onPress={ async() => {
+              keys = await showAllKey();
+              console.log(keys);
+            } } />
         </View>
         <View>
           <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={ () => {
