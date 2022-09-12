@@ -14,16 +14,13 @@ export default function AddTask( {addHandler} ) {
     isComplete: false,
   };
   const [taskName, setTaskName] = useState('');
-  const [taskTemp, setTaskTemp] = useState([]);
 
   const saveTaskButton = () => {
     task.taskName = taskName;
     saveTaskStore(task);
     setTaskName('');
     // здесь task не пустой
-    setTaskTemp(task);
-    console.log(taskTemp);
-    addHandler(taskTemp);
+    addHandler(taskName);
   };
 
   const readTaskButton = async () => {
