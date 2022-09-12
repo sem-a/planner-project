@@ -57,6 +57,11 @@ export default function AddTask( {addHandler} ) {
         <View>
           <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={ () => {
               saveTaskButton();
+              if(taskNew == '') {
+                console.log('Пустой объект');
+              } else {
+                console.log(taskNew);
+              }
               addHandler(taskNew);
             }} />
         </View>
