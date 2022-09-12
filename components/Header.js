@@ -69,8 +69,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#5F92CF',
   },
   container: {
-    width: '90%',
-    marginLeft: '5%',
+    width: '86%',
+    marginLeft: '7%',
   },
   headerPanel: {
     flexDirection: 'row',

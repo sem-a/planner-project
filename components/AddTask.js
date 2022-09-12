@@ -62,8 +62,8 @@ export default function AddTask() {
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
-    marginLeft: '5%',
+    width: '86%',
+    marginLeft: '7%',
     height: '90%',
   },  
   addTaskForm: {
