@@ -7,7 +7,7 @@ import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db
 
 
 
-export default function AddTask() {
+export default function AddTask( {addHandler} ) {
 
   let task = {
     taskName: '',
@@ -17,11 +17,13 @@ export default function AddTask() {
 
   const [taskName, setTaskName] = useState('');
 
+  const [taskNew, setTaskNew] = useState('');
 
   const saveTaskButton = () => {
     task.taskName = taskName;
     console.log(task.taskName);
     saveTaskStore(task);
+    setTaskNew(task);
     setTaskName('');
   };
 
@@ -53,7 +55,10 @@ export default function AddTask() {
           <Ionicons name="attach-outline" size={30} color="#D9D9D9" onPress={showAllKey} />
         </View>
         <View>
-          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveTaskButton} />
+          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={ () => {
+              saveTaskButton();
+              addHandler(taskNew);
+            }} />
         </View>
       </View>
     </View>

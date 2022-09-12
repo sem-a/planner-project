@@ -13,6 +13,16 @@ export default function Main() {
     const [modalAddTask, setModalAddTask] = useState(false);
     const [toDoList, setToDoList] = useState([]);
 
+    const addHandler = (text) => {
+        setToDoList((list) => {
+            return [
+                { taskName: text, isComplete: false },
+                ...list
+            ]
+        })
+    }
+
+
     useEffect( () => {
         const readDataStorege = async() => {
             let resultUseEffect = [];
@@ -46,7 +56,7 @@ export default function Main() {
                         <Entypo name="chevron-small-down" size={30} color="black" style={styles.closeButtonAddTask} 
                             onPress={ () => setModalAddTask(false)}
                         />
-                        <AddTask />
+                        <AddTask addHandler={addHandler} />
                     </View>
                 </View>
 
