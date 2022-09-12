@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, SafeAreaView, Button, Text } from 'react-native';
-import { Ionicons, AntDesign} from '@expo/vector-icons';
+import { Ionicons, Feather } from '@expo/vector-icons';
 import BurgerMenu from './BurgerMenu';
 import Calendar from './Calendar'
 import Modal from 'react-native-modal';
@@ -9,7 +9,7 @@ import Modal from 'react-native-modal';
 export default function Header() {
 
   const [modalBurgerMenu, setModalBurgerMenu] = useState(false);
-  const [modalCalendar, setModalCalendar] = useState(false);
+  const [modalCompleteTask, setModalCompleteTask] = useState(false);
 
     
   return (
@@ -35,16 +35,15 @@ export default function Header() {
           marginLeft: 0,
         }}
       >
-        <BurgerMenu />
       </Modal>
 
 
 
-      <Modal isVisible={modalCalendar}
+      <Modal isVisible={modalCompleteTask}
         animationIn='slideInDown'
         animationOut='slideOutUp'
       >
-        <Text style={{fontSize: 50}} onPress={ () => { setModalCalendar(false) } }>X</Text>
+        <Text style={{fontSize: 50}} onPress={ () => { setModalCompleteTask(false) } }>X</Text>
         <Calendar />
       </Modal>
 
@@ -57,7 +56,7 @@ export default function Header() {
               onPress={ () => { setModalBurgerMenu(true) } }
             />
             <Text style={styles.headerText}>Today</Text>
-            <AntDesign name="calendar" size={30} color="white" onPress={ () => { setModalCalendar(true) } }/>
+            <Feather name="check-circle" size={28} color="white" onPress={ () => {setModalCompleteTask(true)}}/>
           </View>
         </View>
       </View>
