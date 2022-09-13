@@ -4,6 +4,7 @@ import Header from './Header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './AddTask';
 import Modal from "react-native-modal";
+import TaskInfo from './TaskInfo';
 import { readTaskStore, showAllKey } from './db';
 
 
@@ -80,7 +81,7 @@ export default function Main() {
                     
                     { /* Вывести нужно сюда */ }
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
-                        <Text>{item.taskName}</Text>
+                        <TaskInfo item={item} />
                     )} />
 
 

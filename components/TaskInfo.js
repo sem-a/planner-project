@@ -3,9 +3,9 @@ import { StyleSheet, View, SafeAreaView } from 'react-native';
 
 export default function TaskInfo() {
   return (
-    <SafeAreaView>
-      <Text>Я информация о задаче</Text>
-    </SafeAreaView>
+    <View>
+      <Text></Text>
+    </View>
   );
 }
 
