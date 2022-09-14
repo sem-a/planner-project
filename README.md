@@ -1,3 +1,7 @@
 # planner-project
 
-The daily planner app. It will remind you of your business! Under development
+## Install
+You need to install expo:
+```
+npm i -g expo-cli
+```
