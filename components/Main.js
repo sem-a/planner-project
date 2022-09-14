@@ -79,7 +79,7 @@ export default function Main() {
 
                 <View>
                     
-                    { /* Вывести нужно сюда */ }
+
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
                         <TaskInfo item={item} />
                     )} />
