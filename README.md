@@ -13,6 +13,6 @@ And start the server:
 expo start
 ```
 ## Run android 
-Install the android emulator on your computer, download the 'Expo Go` application. Select the menu item `Launch on ios` in the console
+Install the android emulator on your computer, download the `Expo Go` application. Select the menu item `Launch on ios` in the console
 ## Run ios
 Install the `Expo Go` application on the iPhone. We scan the QR code with the smartphone camera.
