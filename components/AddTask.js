@@ -19,7 +19,6 @@ export default function AddTask( {addHandler} ) {
     task.taskName = taskName;
     saveTaskStore(task);
     setTaskName('');
-    // здесь task не пустой
     addHandler(taskName);
   };
 

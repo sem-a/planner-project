@@ -13,6 +13,9 @@ export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
     const [toDoList, setToDoList] = useState([]);
+    const [toDoListComplete, setToDoListComplete] = useState([]);
+
+    
 
     const addHandler = (text) => {
         setToDoList((list) => {

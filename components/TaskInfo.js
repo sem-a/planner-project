@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text,  } from 'react-native';
-import CheckBox from 'react-native-check-box';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+
 
 export default function TaskInfo( {item} ) {
 
-
-  const [toggleIsComplete, setToggleIsComplete] = useState(item.isComplete);
-
+  const [taskNameTemp, setTaskNameTemp] = useState('');
 
   return (
     <View>
       
       <View>
-        
-        <CheckBox
-          isChecked={toggleIsComplete}
-          onClick={ () => { setToggleIsComplete(true) } }
-          rightText={item.taskName}
-        />
+    
+        <TouchableOpacity onPress={ () => {
+            setTaskNameTemp(item.taskName);
+            console.log(taskNameTemp);
+          } }>
+          <Text>{item.taskName}</Text>
+        </TouchableOpacity>
 
       </View>
     
