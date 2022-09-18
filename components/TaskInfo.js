@@ -28,6 +28,3 @@ export default function TaskInfo( {item, taskId, addComplete} ) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-});

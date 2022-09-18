@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
 import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db';
+import style from '../styles/globalStyle.module.css';
 
 export default function AddTask( {addHandler} ) {
   let task = {
@@ -25,13 +26,13 @@ export default function AddTask( {addHandler} ) {
   }
 
   return (
-    <View style={styles.container}>
-      <TextInput style={styles.addTaskForm} placeholder='Введите задачу...' 
+    <View style={style.container}>
+      <TextInput style={style.addTaskForm} placeholder='Введите задачу...' 
         value={taskName}
         onChangeText={setTaskName}
       />
       
-      <View style={styles.addTaskPanel}>
+      <View style={style.addTaskPanel}>
         <View>
           <Feather name="calendar" size={30} color="#D9D9D9" onPress={readTaskButton}/>
         </View>
@@ -51,30 +52,3 @@ export default function AddTask( {addHandler} ) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '86%',
-    marginLeft: '7%',
-    height: '90%',
-  },  
-  addTaskForm: {
-    fontSize: 20,
-    marginTop: 40,
-  },
-  addSubTaskForm: {
-    marginTop: 20,
-    marginLeft: 30,
-    fontSize: 14,
-  },
-  addTaskPanel: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    position: 'absolute',
-    width: '100%',
-    bottom: 0,
-    shadowColor: 'black',
-
-  },
-});

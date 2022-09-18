@@ -10,6 +10,3 @@ export default function CompleteTask( {toDoComplete} ) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-});

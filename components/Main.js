@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import Header from './header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './addTask';
 import Modal from "react-native-modal";
 import TaskInfo from './taskInfo';
 import { readTaskStore, showAllKey } from './db';
+import style from '../styles/globalStyle.module.css';
 
 export default function Main() {
     const [modalAddTask, setModalAddTask] = useState(false);
@@ -71,9 +72,9 @@ export default function Main() {
                     marginLeft: 0,
                 }}
             >
-                <View style={styles.addTaskStyles}>
-                    <View style={styles.modalAddTask}>
-                        <Entypo name="chevron-small-down" size={30} color="black" style={styles.closeButtonAddTask} 
+                <View style={style.addTaskStyles}>
+                    <View style={style.modalAddTask}>
+                        <Entypo name="chevron-small-down" size={30} color="black" style={style.closeButtonAddTask} 
                             onPress={ () => setModalAddTask(false)}
                         />
                         <AddTask addHandler={addHandler} />
@@ -81,46 +82,15 @@ export default function Main() {
                 </View>
             </Modal>
             <Header toDoComplete={toDoComplete} />
-            <View style={styles.container}>
+            <View style={style.container}>
                 <View>
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
                         <TaskInfo item={item} taskId={toDoList.indexOf(item)} addComplete={addComplete} />
                     )} />
                 </View>
-                <Ionicons name="add-circle" size={100} color="#5F92CF" style={styles.addCircle}
+                <Ionicons name="add-circle" size={100} color="#5F92CF" style={style.addCircle}
                 onPress={ () => { setModalAddTask(true) }} />
             </View>
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        width: '86%',
-        marginLeft: '7%',
-        height: '100%',
-    },
-    addCircle: {
-        position: 'absolute',
-        right: -15,
-        bottom: 350,
-    },
-    closeButtonAddTask: {
-        textAlign: 'center',
-        color: '#D9D9D9',
-    },
-    addTaskStyles: {
-        flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'flex-end',
-        alignItems: 'center', 
-    },
-    modalAddTask: {
-        width: '100%',
-        height: '85%',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        backgroundColor: 'white',
-    },
-    
-});
