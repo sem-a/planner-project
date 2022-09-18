@@ -24,13 +24,16 @@ export default function Main() {
         })
     }
 
-    const addComplete = (text) => {
+    const addComplete = (text, taskId) => {
         setToDoComplete((list) => {
             return [
                 { taskName: text, isComplete: true },
                 ...list
             ]
         })
+        let copyArray = Object.assign([], toDoList);
+        copyArray.splice(taskId, 1);
+        setToDoList(copyArray);
     }
 
     useEffect( () => {
@@ -76,11 +79,6 @@ export default function Main() {
 
             </Modal>
 
-
-
-         
-
-
             <Header toDoComplete={toDoComplete} />
 
             <View style={styles.container}>
@@ -88,14 +86,11 @@ export default function Main() {
 
                 <View>
                     
-
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
                         <TaskInfo item={item} taskId={toDoList.indexOf(item)} addComplete={addComplete} />
                     )} />
 
-
                 </View>
-
 
                 <Ionicons name="add-circle" size={100} color="#5F92CF" style={styles.addCircle}
                 onPress={ () => { setModalAddTask(true) }} />

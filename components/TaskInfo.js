@@ -13,7 +13,7 @@ export default function TaskInfo( {item, taskId, addComplete} ) {
 
   const rewriteTaskButton = () => {
     rewriteTaskStore(rewriteTask, taskId);
-    addComplete(rewriteTask.taskName);
+    addComplete(rewriteTask.taskName, taskId);
   }
 
 
