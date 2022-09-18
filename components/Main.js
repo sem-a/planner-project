@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Text, Button, FlatList, TouchableOpacity, CheckBox } from 'react-native';
-import Header from './Header';
+import { StyleSheet, View, FlatList } from 'react-native';
+import Header from './header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
-import AddTask from './AddTask';
+import AddTask from './addTask';
 import Modal from "react-native-modal";
-import TaskInfo from './TaskInfo';
+import TaskInfo from './taskInfo';
 import { readTaskStore, showAllKey } from './db';
 
-
-
 export default function Main() {
-
     const [modalAddTask, setModalAddTask] = useState(false);
     const [toDoList, setToDoList] = useState([]);
     const [toDoComplete, setToDoComplete] = useState([]);
-    
     const addHandler = (text) => {
         setToDoList((list) => {
             return [
@@ -23,7 +19,6 @@ export default function Main() {
             ]
         })
     }
-
     const addComplete = (text, taskId) => {
         setToDoComplete((list) => {
             return [
@@ -35,9 +30,8 @@ export default function Main() {
         copyArray.splice(taskId, 1);
         setToDoList(copyArray);
     }
-
     useEffect( () => {
-        const readDataStorage = async() => {
+        const readDataStorage = async() => { 
             let resultUseEffect;
             let toDoListTemp = [];
             let toDoCompleteTemp = [];
@@ -56,7 +50,7 @@ export default function Main() {
                 }
                 setToDoList(toDoListTemp);
                 setToDoComplete(toDoCompleteTemp);
-                console.log(toDoListTemp); // откуда-то берется undefined 
+                console.log(toDoListTemp);
             }
         };
         readDataStorage();
@@ -65,7 +59,6 @@ export default function Main() {
 
     return (
         <View>
-
             <Modal isVisible={modalAddTask}
                 animationIn='slideInUp'
                 animationOut='slideOutDown'
@@ -86,22 +79,14 @@ export default function Main() {
                         <AddTask addHandler={addHandler} />
                     </View>
                 </View>
-
             </Modal>
-
             <Header toDoComplete={toDoComplete} />
-
             <View style={styles.container}>
-
-
                 <View>
-                    
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
                         <TaskInfo item={item} taskId={toDoList.indexOf(item)} addComplete={addComplete} />
                     )} />
-
                 </View>
-
                 <Ionicons name="add-circle" size={100} color="#5F92CF" style={styles.addCircle}
                 onPress={ () => { setModalAddTask(true) }} />
             </View>

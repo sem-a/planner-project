@@ -1,33 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Text, TextInput, Button } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, TextInput } from 'react-native';
 import { Ionicons, Feather } from '@expo/vector-icons';
-
 import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db';
 
-
-
-
 export default function AddTask( {addHandler} ) {
-
   let task = {
     taskName: '',
     isComplete: false,
   };
   const [taskName, setTaskName] = useState('');
-
   const saveTaskButton = () => {
     task.taskName = taskName;
     saveTaskStore(task);
     setTaskName('');
     addHandler(taskName);
   };
-
   const readTaskButton = async () => {
     let readResult = await readTaskStore(0);
     console.log(readResult);
     return readResult;
   };
-  
   const clearTaskButton = () => {
     clearTaskStorage();
   }

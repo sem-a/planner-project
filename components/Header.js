@@ -1,25 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons ,Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import Settings from './Settings';
-import CompleteTask from './CompleteTask';
-
+import Settings from './settings';
+import CompleteTask from './completeTask';
 
 export default function Header( {toDoComplete} ) {
-
   const [modalSettings, setModalSettings] = useState(false);
   const [modalCompleteTask, setModalCompleteTask] = useState(false);
 
-    
   return (
-
-
-    
-
     <View>
-
-
       <Modal isVisible={modalSettings}
         animationIn='slideInRight'
         animationOut='slideOutRight'
@@ -30,9 +21,6 @@ export default function Header( {toDoComplete} ) {
           <Settings />
         </View>
       </Modal>
-
-
-
       <Modal isVisible={modalCompleteTask}
         animationIn='slideInRight'
         animationOut='slideOutRight'
@@ -43,9 +31,6 @@ export default function Header( {toDoComplete} ) {
           <CompleteTask toDoComplete={toDoComplete} />
         </View>
       </Modal>
-
-
-
       <View style={styles.header}>
         <View style={styles.container}>
           <View style={styles.headerPanel}>
@@ -55,11 +40,6 @@ export default function Header( {toDoComplete} ) {
           </View>
         </View>
       </View>
-
-
-      
-
-
     </View>
   );
 }
@@ -85,9 +65,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
-
-
-
   modalHeader: {
     backgroundColor: 'white',
     width: '100%',
@@ -103,5 +80,4 @@ const styles = StyleSheet.create({
     marginLeft: '5%',
     marginTop: 50,
   },
-
 });

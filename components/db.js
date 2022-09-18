@@ -1,7 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let ID = 0;
-
 export async function showAllKey() {
     // получение всех ключей хранилища
     let keys = []
@@ -12,7 +11,6 @@ export async function showAllKey() {
         console.log('Error key');
     }
 };
-
 export async function saveTaskStore(task) {
     // сохранение данных в хранилище
     try {
@@ -28,7 +26,6 @@ export async function saveTaskStore(task) {
         console.log('Error save!');
     }    
 };
-
 export async function rewriteTaskStore(task, taskId) {
     // перезаписать данные в хранилище
     try {
@@ -38,7 +35,6 @@ export async function rewriteTaskStore(task, taskId) {
         console.log('Error rewrite');
     }
 }
-
 export async function readTaskStore(ID) {
     // чтение данных из хранилища
     try {
@@ -54,7 +50,6 @@ export async function readTaskStore(ID) {
         console.log('Фатальная ошибка! Все потеряно!');
     }  
 };
-
 export async function removeTaskItem(ID) {
     // удалить элемент из хранилища
     try {
@@ -64,7 +59,6 @@ export async function removeTaskItem(ID) {
         console.log('Error remove!');
     }
 };
-
 export async function clearTaskStorage() {
     // очистить хранилище полностью
     try {

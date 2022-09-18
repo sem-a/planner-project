@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Text, Button } from 'react-native';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 export default function Settings() {
-
   return (
     <View>
 
@@ -11,5 +10,4 @@ export default function Settings() {
 }
 
 const styles = StyleSheet.create({
-  
 });
