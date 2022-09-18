@@ -6,8 +6,15 @@ import { rewriteTaskStore } from './db';
 
 export default function TaskInfo( {item, taskId, addComplete} ) {
 
+  let taskName
+  if (item != undefined) {
+    taskName = item.taskName;
+  } else {
+    taskName = '';
+  }
+
   const rewriteTask = {
-    taskName: item.taskName,
+    taskName: taskName,
     isComplete: true,
   };
 
@@ -24,7 +31,7 @@ export default function TaskInfo( {item, taskId, addComplete} ) {
       <View>
     
         <TouchableOpacity onPress={rewriteTaskButton}>
-          <Text>{item.taskName}</Text>
+          <Text>{taskName}</Text>
         </TouchableOpacity>
 
       </View>

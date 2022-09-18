@@ -38,15 +38,25 @@ export default function Main() {
 
     useEffect( () => {
         const readDataStorage = async() => {
-            let resultUseEffect = [];
+            let resultUseEffect;
+            let toDoListTemp = [];
+            let toDoCompleteTemp = [];
             let keys = await showAllKey();
-            if (keys != undefined) {
-                for (let index = 0; index < keys.length; index++) {
-                    resultUseEffect[index] = await readTaskStore(index);
-                };
-                setToDoList(resultUseEffect);
-            } else {
-                console.log('Хранилище пустое')
+            if(keys != undefined) {
+                for (let i = 0; i < keys.length; i++) {
+                    resultUseEffect = await readTaskStore(i);
+                    console.log(resultUseEffect);
+                    if (resultUseEffect == undefined) {
+                        console.log('Какого хуя undefined')
+                    } else if (resultUseEffect.isComplete == false) {
+                        toDoListTemp[i] = resultUseEffect;
+                    } else {
+                        toDoCompleteTemp[i] = resultUseEffect;
+                    }
+                }
+                setToDoList(toDoListTemp);
+                setToDoComplete(toDoCompleteTemp);
+                console.log(toDoListTemp); // откуда-то берется undefined 
             }
         };
         readDataStorage();
