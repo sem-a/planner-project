@@ -29,6 +29,16 @@ export async function saveTaskStore(task) {
     }    
 };
 
+export async function rewriteTaskStore(task, taskId) {
+    // перезаписать данные в хранилище
+    try {
+        const jsonTaskItem = JSON.stringify(task);
+        await AsyncStorage.setItem(`@store1:${taskId}`, jsonTaskItem);
+    } catch(e) {
+        console.log('Error rewrite');
+    }
+}
+
 export async function readTaskStore(ID) {
     // чтение данных из хранилища
     try {
@@ -45,10 +55,10 @@ export async function readTaskStore(ID) {
     }  
 };
 
-export async function removeTaskItem(STOREGE_KEY) {
+export async function removeTaskItem(ID) {
     // удалить элемент из хранилища
     try {
-        await AsyncStorage.removeItem(STORAGE_KEY);
+        await AsyncStorage.removeItem(`@store1:${ID}`);
         console.log('Remove done!'); 
     } catch(e) {
         console.log('Error remove!');

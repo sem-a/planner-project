@@ -1,20 +1,29 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 
+import { rewriteTaskStore } from './db';
 
-export default function TaskInfo( {item} ) {
 
-  const [taskNameTemp, setTaskNameTemp] = useState('');
+export default function TaskInfo( {item, taskId, addComplete} ) {
+
+  const rewriteTask = {
+    taskName: item.taskName,
+    isComplete: true,
+  };
+
+  const rewriteTaskButton = () => {
+    rewriteTaskStore(rewriteTask, taskId);
+    addComplete(rewriteTask.taskName);
+  }
+
+
 
   return (
     <View>
       
       <View>
     
-        <TouchableOpacity onPress={ () => {
-            setTaskNameTemp(item.taskName);
-            console.log(taskNameTemp);
-          } }>
+        <TouchableOpacity onPress={rewriteTaskButton}>
           <Text>{item.taskName}</Text>
         </TouchableOpacity>
 

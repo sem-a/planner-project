@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Button, Text } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { Ionicons ,Feather } from '@expo/vector-icons';
-import Calendar from './CompleteTask'
 import Modal from 'react-native-modal';
 import Settings from './Settings';
+import CompleteTask from './CompleteTask';
 
 
-export default function Header() {
+export default function Header( {toDoComplete} ) {
 
   const [modalSettings, setModalSettings] = useState(false);
   const [modalCompleteTask, setModalCompleteTask] = useState(false);
@@ -40,7 +40,7 @@ export default function Header() {
       >
         <View style={styles.modalFlex}>
           <Ionicons name="chevron-back" size={30} color="#5F92CF" onPress={ () => { setModalCompleteTask(false) } }/>
-          <Calendar />
+          <CompleteTask toDoComplete={toDoComplete} />
         </View>
       </Modal>
 

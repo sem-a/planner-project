@@ -13,10 +13,8 @@ export default function Main() {
 
     const [modalAddTask, setModalAddTask] = useState(false);
     const [toDoList, setToDoList] = useState([]);
-    const [toDoListComplete, setToDoListComplete] = useState([]);
-
+    const [toDoComplete, setToDoComplete] = useState([]);
     
-
     const addHandler = (text) => {
         setToDoList((list) => {
             return [
@@ -26,6 +24,14 @@ export default function Main() {
         })
     }
 
+    const addComplete = (text) => {
+        setToDoComplete((list) => {
+            return [
+                { taskName: text, isComplete: true },
+                ...list
+            ]
+        })
+    }
 
     useEffect( () => {
         const readDataStorage = async() => {
@@ -75,7 +81,7 @@ export default function Main() {
          
 
 
-            <Header />
+            <Header toDoComplete={toDoComplete} />
 
             <View style={styles.container}>
 
@@ -84,7 +90,7 @@ export default function Main() {
                     
 
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
-                        <TaskInfo item={item} />
+                        <TaskInfo item={item} taskId={toDoList.indexOf(item)} addComplete={addComplete} />
                     )} />
 
 

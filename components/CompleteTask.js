@@ -1,10 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, SafeAreaView, Text } from 'react-native';
+import { StyleSheet, View, SafeAreaView, Text, FlatList } from 'react-native';
+import TaskInfo from './TaskInfo';
 
-export default function CompleteTask() {
+export default function CompleteTask( {toDoComplete} ) {
   return (
     <View>
-      
+      <FlatList data={toDoComplete} renderItem={ ( {item} ) => (
+        <Text>{item.taskName}</Text>
+      )} />
     </View>
   );
 }
