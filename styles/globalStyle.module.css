@@ -25,6 +25,11 @@
     border-top-right-radius: 20;
     background-color: white;
 }
+.addtask__container {
+    width: 86%;
+    margin-left: 7%;
+    height: 90%;
+}
 .addTaskForm {
     font-size: 20;
     margin-top: 40;
@@ -45,7 +50,7 @@
 .header {
     background-color: #5F92CF;
 }
-.container {
+.header__container {
     width: 86%;
     margin-left: 7%;
 }
@@ -70,7 +75,7 @@
     margin-top: 0;
     margin-left: 0;
 }
-modalFlex {
+.modalFlex {
     flex: 1;
     flex-direction: column;
     width: 90%;

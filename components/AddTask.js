@@ -26,7 +26,7 @@ export default function AddTask( {addHandler} ) {
   }
 
   return (
-    <View style={style.container}>
+    <View style={style.addtask__container}>
       <TextInput style={style.addTaskForm} placeholder='Введите задачу...' 
         value={taskName}
         onChangeText={setTaskName}

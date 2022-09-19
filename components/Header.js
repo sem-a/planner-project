@@ -33,7 +33,7 @@ export default function Header( {toDoComplete} ) {
         </View>
       </Modal>
       <View style={style.header}>
-        <View style={style.container}>
+        <View style={style.header__container}>
           <View style={style.headerPanel}>
           <Feather name="settings" size={30} color="white" onPress={ () => { setModalSettings(true) } } />
             <Text style={style.headerText}>Today</Text>

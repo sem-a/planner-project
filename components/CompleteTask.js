@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 
 export default function CompleteTask( {toDoComplete} ) {
   return (

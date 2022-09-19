@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { rewriteTaskStore } from './db';
 
 export default function TaskInfo( {item, taskId, addComplete} ) {
