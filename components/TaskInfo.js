@@ -4,20 +4,6 @@ import { rewriteTaskStore } from './db';
 import style from '../styles/globalStyle.module.css';
 import Ionicons from '@expo/vector-icons';
 
-function TaskCheckBox() {
-  const [checkedCheckBox, setCheckedCheckBox] = useState(false);
-  function changeChecked() {
-    setCheckedCheckBox(!checkedCheckBox);
-  };
-  return (
-    <Pressable
-      style={[style.checkboxBase, checkedCheckBox && style.checkboxChecked]}
-      onPress={changeChecked}>
-      {checkedCheckBox && <Ionicons name="checkmark" size={24} color="white" />}
-    </Pressable>
-  );
-}
-
 
 
 export default function TaskInfo( {item, taskId, addComplete} ) {
@@ -39,8 +25,7 @@ export default function TaskInfo( {item, taskId, addComplete} ) {
   return (
     <View>      
       <View>
-        <TouchableOpacity onPress={rewriteTaskButton}>
-          <TaskCheckBox />
+        <TouchableOpacity style={style.task__item} onPress={rewriteTaskButton}>
           <Text style={style.info__text}>{taskName}</Text>
         </TouchableOpacity>
       </View>

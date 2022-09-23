@@ -27,9 +27,6 @@ export default function Main() {
                 ...list
             ]
         })
-        let copyArray = Object.assign([], toDoList);
-        copyArray.splice(taskId, 1);
-        setToDoList(copyArray);
     }
     useEffect( () => {
         const readDataStorage = async() => { 
