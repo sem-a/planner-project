@@ -83,10 +83,14 @@
     margin-top: 50;
 }
 
-
+.task__item {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
 .info__text {
     font-size: 20;
-    padding-left: 5;
+    padding-left: 10;
 }
 .checkboxBase {
     width: 24;
