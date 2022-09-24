@@ -1,27 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { rewriteTaskStore } from './db';
+import Checkbox from 'expo-checkbox';
 import style from '../styles/globalStyle.module.css';
-import Ionicons from '@expo/vector-icons';
-
-function MyCheckBox( {checked, onChange} ) {
-  function onCheckmarkPress() {
-    onChange(!checked);
-  }
-  return (
-    <Pressable 
-      style={[style.checkboxBase, checked && style.checkboxChecked]}
-      onPress={onCheckmarkPress}
-    >
-      {checked && <Ionicons name="checkmark" size={24} color="white" />}
-    </Pressable>
-  );
-}
 
 export default function TaskInfo( {item, taskId, addComplete} ) {
-
-  const [checked, onChange] = useState(false);
-
   let taskName;
   if (item != undefined) {
     taskName = item.taskName;
@@ -36,14 +19,22 @@ export default function TaskInfo( {item, taskId, addComplete} ) {
     rewriteTaskStore(rewriteTask, taskId);
     addComplete(rewriteTask.taskName, taskId);
   };
+  const [isChecked, setChecked] = useState(false);
+  const changeChecked = () => {
+    setChecked(!isChecked);
+  }
 
   return (
     <View>      
       <View>
-        <TouchableOpacity style={style.task__item} onPress={rewriteTaskButton}>
-          <MyCheckBox
-            checked={checked}
-            onChange={onChange}
+        <TouchableOpacity style={style.task__item} onPress={ ()=> {
+          rewriteTaskButton();
+          changeChecked();
+        } }>
+          <Checkbox
+            style={style.checkbox__base}
+            value={isChecked}
+            color={isChecked ? '#5F92CF' : undefined}
           />
           <Text style={style.info__text}>{taskName}</Text>
         </TouchableOpacity>
