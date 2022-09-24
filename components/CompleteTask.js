@@ -10,7 +10,7 @@ export default function CompleteTask( {toDoComplete} ) {
   }
 
   return (
-    <View>
+    <View style={style.task__list}>
       <FlatList data={toDoComplete} renderItem={ ( {item} ) => (
         <View style={style.task__item} >
           <Checkbox

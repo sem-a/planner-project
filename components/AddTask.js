@@ -34,19 +34,7 @@ export default function AddTask( {addHandler} ) {
       
       <View style={style.addTaskPanel}>
         <View>
-          <Feather name="calendar" size={30} color="#D9D9D9" onPress={readTaskButton}/>
-        </View>
-        <View>
-          <Ionicons name="notifications-outline" size={30} color="#D9D9D9" onPress={clearTaskButton}/>
-        </View>
-        <View>
-          <Ionicons name="attach-outline" size={30} color="#D9D9D9" onPress={ async() => {
-              keys = await showAllKey();
-              console.log(keys);
-            } } />
-        </View>
-        <View>
-          <Ionicons name="arrow-up-circle" size={30} color="#5F92CF" onPress={saveTaskButton} />
+          <Ionicons name="arrow-up-circle" size={60} color="#5F92CF" onPress={saveTaskButton} />
         </View>
       </View>
     </View>

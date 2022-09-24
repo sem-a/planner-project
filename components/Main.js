@@ -33,18 +33,13 @@ export default function Main() {
             let resultUseEffect;
             let toDoListTemp = [];
             let toDoCompleteTemp = [];
-            //console.log(toDoCompleteTemp);
-            console.log('Массив toDoListTemp:', toDoListTemp);
             let keys = await showAllKey();
             if(keys != undefined) {
                 for (let i = 0; i < keys.length; i++) {
                     let j = 0;
                     let k = 0;
                     resultUseEffect = await readTaskStore(i);
-                    console.log('Переменная resultUseEffect итерация ' + i + ': ', resultUseEffect)
-                    if (resultUseEffect == undefined) {
-                        console.log('undefined')
-                    } else if (resultUseEffect.isComplete == false) {
+                    if (resultUseEffect.isComplete == false) {
                         toDoListTemp[j] = resultUseEffect;
                         j++;
                     } else {
@@ -54,7 +49,6 @@ export default function Main() {
                 }
                 setToDoList(toDoListTemp);
                 setToDoComplete(toDoCompleteTemp);
-                console.log('Итоговый массив toDoListTemp', toDoListTemp);
             }
         };
         readDataStorage();
@@ -85,7 +79,7 @@ export default function Main() {
             </Modal>
             <Header toDoComplete={toDoComplete} />
             <View style={style.container}>
-                <View>
+                <View style={style.task__list}>
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
                         <TaskInfo item={item} taskId={toDoList.indexOf(item)} addComplete={addComplete} />
                     )} />

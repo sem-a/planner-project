@@ -15,6 +15,7 @@ export default function Header( {toDoComplete} ) {
       <Modal isVisible={modalSettings}
         animationIn='slideInRight'
         animationOut='slideOutRight'
+        swipeDirection='right'
         style={style.modalHeader}
       >
         <View style={style.modalFlex}>
@@ -25,6 +26,7 @@ export default function Header( {toDoComplete} ) {
       <Modal isVisible={modalCompleteTask}
         animationIn='slideInRight'
         animationOut='slideOutRight'
+        swipeDirection='right'
         style={style.modalHeader}
       >
         <View style={style.modalFlex}>
