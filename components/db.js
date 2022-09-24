@@ -3,7 +3,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 let ID = 0;
 export async function showAllKey() {
     // получение всех ключей хранилища
-    let keys = []
+    let keys = [];
     try {
         keys = await AsyncStorage.getAllKeys();
         return keys;
@@ -15,8 +15,8 @@ export async function saveTaskStore(task) {
     // сохранение данных в хранилище
     try {
         const getId = async() => {
-            let keys = await showAllKey()
-            return keys.length
+            let keys = await showAllKey();
+            return keys.length;
         }
         ID = await getId();
         const jsonTaskItem = JSON.stringify(task);

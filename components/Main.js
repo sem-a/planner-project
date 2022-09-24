@@ -12,18 +12,18 @@ export default function Main() {
     const [modalAddTask, setModalAddTask] = useState(false);
     const [toDoList, setToDoList] = useState([]);
     const [toDoComplete, setToDoComplete] = useState([]);
-    const addHandler = (text) => {
+    const addHandler = (text, id) => {
         setToDoList((list) => {
             return [
-                { taskName: text, isComplete: false },
+                { taskId: id, taskName: text, isComplete: false },
                 ...list
             ]
         })
     }
-    const addComplete = (text, taskId) => {
+    const addComplete = (text, id) => {
         setToDoComplete((list) => {
             return [
-                { taskName: text, isComplete: true },
+                {taskId: id, taskName: text, isComplete: true },
                 ...list
             ]
         })
@@ -40,7 +40,6 @@ export default function Main() {
                 let k = 0;
                 for (let i = 0; i < keys.length; i++) {
                     resultUseEffect = await readTaskStore(i);
-                    console.log('resultUseEffect:', resultUseEffect);
                     if (resultUseEffect.isComplete == false) {
                         toDoListTemp[j] = resultUseEffect;
                         j++;
@@ -85,7 +84,7 @@ export default function Main() {
             <View style={style.container}>
                 <View style={style.task__list}>
                     <FlatList data={toDoList} renderItem={ ( {item} ) => (
-                        <TaskInfo item={item} taskId={toDoList.indexOf(item)} addComplete={addComplete} />
+                        <TaskInfo item={item} addComplete={addComplete} />
                     )} />
                 </View>
                 <Ionicons name="add-circle" size={100} color="#5F92CF" style={style.addCircle}

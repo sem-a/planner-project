@@ -1,16 +1,23 @@
 import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { saveTaskStore } from './db';
+import { saveTaskStore, showAllKey } from './db';
 import style from '../styles/globalStyle.module.css';
 
 export default function AddTask( {addHandler} ) {
   let task = {
+    taskId: 0,
     taskName: '',
     isComplete: false,
   };
   const [taskName, setTaskName] = useState('');
-  const saveTaskButton = () => {
+  const saveTaskButton = async() => {
+    const getId = async() => {
+      let keys = await showAllKey();
+      return keys.length;
+    }
+    taskId = await getId();
+    task.taskId = taskId;
     task.taskName = taskName;
     saveTaskStore(task);
     setTaskName('');

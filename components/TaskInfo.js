@@ -4,7 +4,7 @@ import { rewriteTaskStore } from './db';
 import Checkbox from 'expo-checkbox';
 import style from '../styles/globalStyle.module.css';
 
-export default function TaskInfo( {item, taskId, addComplete} ) {
+export default function TaskInfo( {item, addComplete} ) {
   let taskName;
   if (item != undefined) {
     taskName = item.taskName;
@@ -12,12 +12,14 @@ export default function TaskInfo( {item, taskId, addComplete} ) {
     taskName = '';
   };
   const rewriteTask = {
+    taskId: item.taskId,
     taskName: taskName,
     isComplete: true,
   };
   const rewriteTaskButton = () => {
-    rewriteTaskStore(rewriteTask, taskId);
-    addComplete(rewriteTask.taskName, taskId);
+    console.log('taskId:', item.taskId);
+    rewriteTaskStore(rewriteTask, item.taskId);
+    addComplete(rewriteTask.taskName, item.taskId);
   };
   const [isChecked, setChecked] = useState(false);
   const changeChecked = () => {
