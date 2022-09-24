@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput } from 'react-native';
-import { Ionicons, Feather } from '@expo/vector-icons';
-import { saveTaskStore, readTaskStore, clearTaskStorage, showAllKey } from './db';
+import { Ionicons } from '@expo/vector-icons';
+import { saveTaskStore } from './db';
 import style from '../styles/globalStyle.module.css';
 
 export default function AddTask( {addHandler} ) {
@@ -16,14 +16,6 @@ export default function AddTask( {addHandler} ) {
     setTaskName('');
     addHandler(taskName);
   };
-  const readTaskButton = async () => {
-    let readResult = await readTaskStore(0);
-    console.log(readResult);
-    return readResult;
-  };
-  const clearTaskButton = () => {
-    clearTaskStorage();
-  }
 
   return (
     <View style={style.addtask__container}>
@@ -31,7 +23,6 @@ export default function AddTask( {addHandler} ) {
         value={taskName}
         onChangeText={setTaskName}
       />
-      
       <View style={style.addTaskPanel}>
         <View>
           <Ionicons name="arrow-up-circle" size={60} color="#5F92CF" onPress={saveTaskButton} />

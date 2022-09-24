@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, FlatList } from 'react-native';
+import { View, FlatList, Button } from 'react-native';
 import Header from './header';
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import AddTask from './addTask';
@@ -34,11 +34,13 @@ export default function Main() {
             let toDoListTemp = [];
             let toDoCompleteTemp = [];
             let keys = await showAllKey();
+            console.log('Ключи:', keys);
             if(keys != undefined) {
+                let j = 0;
+                let k = 0;
                 for (let i = 0; i < keys.length; i++) {
-                    let j = 0;
-                    let k = 0;
                     resultUseEffect = await readTaskStore(i);
+                    console.log('resultUseEffect:', resultUseEffect);
                     if (resultUseEffect.isComplete == false) {
                         toDoListTemp[j] = resultUseEffect;
                         j++;
@@ -49,6 +51,8 @@ export default function Main() {
                 }
                 setToDoList(toDoListTemp);
                 setToDoComplete(toDoCompleteTemp);
+                console.log('Массив toDoList:', toDoListTemp);
+                console.log('Массив toDoComplete:', toDoCompleteTemp);
             }
         };
         readDataStorage();
