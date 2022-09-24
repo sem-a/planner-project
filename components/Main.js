@@ -29,30 +29,35 @@ export default function Main() {
         })
     }
     useEffect( () => {
-        const readDataStorage = async() => { 
+        const readDataStorage = async() => {
             let resultUseEffect;
             let toDoListTemp = [];
             let toDoCompleteTemp = [];
+            //console.log(toDoCompleteTemp);
+            console.log('Массив toDoListTemp:', toDoListTemp);
             let keys = await showAllKey();
             if(keys != undefined) {
                 for (let i = 0; i < keys.length; i++) {
+                    let j = 0;
+                    let k = 0;
                     resultUseEffect = await readTaskStore(i);
-                    console.log(resultUseEffect);
+                    console.log('Переменная resultUseEffect итерация ' + i + ': ', resultUseEffect)
                     if (resultUseEffect == undefined) {
-                        console.log('Какого хуя undefined')
+                        console.log('undefined')
                     } else if (resultUseEffect.isComplete == false) {
-                        toDoListTemp[i] = resultUseEffect;
+                        toDoListTemp[j] = resultUseEffect;
+                        j++;
                     } else {
-                        toDoCompleteTemp[i] = resultUseEffect;
+                        toDoCompleteTemp[k] = resultUseEffect;
+                        k++;
                     }
                 }
                 setToDoList(toDoListTemp);
                 setToDoComplete(toDoCompleteTemp);
-                console.log(toDoListTemp);
+                console.log('Итоговый массив toDoListTemp', toDoListTemp);
             }
         };
         readDataStorage();
-        console.log(`Хук работает`);
     }, []);
 
     return (
