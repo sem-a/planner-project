@@ -16,12 +16,13 @@ export default function AddTask( {addHandler} ) {
       let keys = await showAllKey();
       return keys.length;
     }
-    taskId = await getId();
+    let taskId = await getId();
     task.taskId = taskId;
+    console.log(taskId);
     task.taskName = taskName;
     saveTaskStore(task);
     setTaskName('');
-    addHandler(taskName);
+    addHandler(taskName, taskId);
   };
 
   return (
