@@ -18,7 +18,6 @@ export default function AddTask( {addHandler} ) {
     }
     let taskId = await getId();
     task.taskId = taskId;
-    console.log(taskId);
     task.taskName = taskName;
     saveTaskStore(task);
     setTaskName('');

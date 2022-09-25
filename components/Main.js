@@ -34,7 +34,6 @@ export default function Main() {
             let toDoListTemp = [];
             let toDoCompleteTemp = [];
             let keys = await showAllKey();
-            console.log('Ключи:', keys);
             if(keys != undefined) {
                 let j = 0;
                 let k = 0;
@@ -50,8 +49,6 @@ export default function Main() {
                 }
                 setToDoList(toDoListTemp);
                 setToDoComplete(toDoCompleteTemp);
-                console.log('Массив toDoList:', toDoListTemp);
-                console.log('Массив toDoComplete:', toDoCompleteTemp);
             }
         };
         readDataStorage();

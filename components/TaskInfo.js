@@ -17,7 +17,6 @@ export default function TaskInfo( {item, addComplete} ) {
     isComplete: true,
   };
   const rewriteTaskButton = () => {
-    console.log('taskId:', item.taskId);
     rewriteTaskStore(rewriteTask, item.taskId);
     addComplete(rewriteTask.taskName, item.taskId);
   };
