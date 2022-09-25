@@ -16,3 +16,10 @@ expo start
 Install the android emulator on your computer, download the `Expo Go` application. Select the menu item `Launch on ios` in the console
 ## Run ios
 Install the `Expo Go` application on the iPhone. We scan the QR code with the smartphone camera.
+
+## Assembly in the apk
+In the console, go to the directory with the project and write the command:
+```
+expo build:android -t apk
+```
+After completion, click on the link and download the apk.
