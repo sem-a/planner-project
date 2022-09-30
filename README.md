@@ -20,6 +20,6 @@ Install the `Expo Go` application on the iPhone. We scan the QR code with the sm
 ## Assembly in the apk
 In the console, go to the directory with the project and write the command:
 ```
-expo build:android -t apk
+expo build:android -t app-bundle
 ```
 After completion, click on the link and download the apk.
