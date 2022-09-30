@@ -32,7 +32,16 @@
     },
     "packagerOpts": {
       "config": "metro.config.js",
-      "sourceExts": ["js", "jsx", "css"]
+      "sourceExts": [
+        "js",
+        "jsx",
+        "css"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "9790ced2-2f02-43af-be77-b9c08b7cf6b0"
+      }
     }
   }
 }
